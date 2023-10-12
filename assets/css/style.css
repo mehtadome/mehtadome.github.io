@@ -495,6 +495,25 @@ a.hoverline:hover {
   display: table-cell;
 }
 
+#certifications .card.large {
+  height: 360px;
+}
+
+#certifications h4 {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+}
+
+#certifications .col img.responsive-img {
+  margin: 0 auto;
+  max-height: 100px;
+  padding-bottom: 10px;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+}
+
 .card.large .card-content p {
   color: inherit;
   margin: 0;
