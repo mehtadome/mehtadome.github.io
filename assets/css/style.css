@@ -505,14 +505,14 @@ a.hoverline:hover {
   padding-bottom: 20px;
 }
 
-#certifications .col img.responsive-img {
+/* #certifications .col img.responsive-img {
   margin: 0 auto;
   max-height: 100px;
   padding-bottom: 10px;
   text-align: center;
   vertical-align: middle;
   display: table-cell;
-}
+} */
 
 .card.large .card-content p {
   color: inherit;
