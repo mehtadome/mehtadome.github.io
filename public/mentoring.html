@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Mentoring Stats — enter code</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --text: #0b0b0b; --muted: #52514e;
+    --border: rgba(11,11,11,0.10); --accent: #b3242b; --field: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --text: #ffffff; --muted: #c3c2b7;
+      --border: rgba(255,255,255,0.10); --accent: #e05a60; --field: #111110;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    background: var(--page); color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5;
+    -webkit-font-smoothing: antialiased; padding: 24px;
+  }
+  .box {
+    width: 100%; max-width: 380px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 14px; padding: 28px 26px 26px;
+  }
+  h1 { font-size: 20px; font-weight: 650; letter-spacing: -0.01em; margin: 0 0 6px; }
+  p  { font-size: 14px; color: var(--muted); margin: 0 0 20px; }
+  label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 7px; }
+  input {
+    width: 100%; font: inherit; font-size: 15px; padding: 10px 12px;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: var(--field); color: var(--text); text-transform: lowercase;
+  }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  button {
+    width: 100%; margin-top: 14px; font: inherit; font-size: 15px; font-weight: 600;
+    padding: 10px 12px; border: 0; border-radius: 8px; cursor: pointer;
+    background: var(--accent); color: #fff;
+  }
+  button:hover { filter: brightness(1.07); }
+  .msg { min-height: 20px; margin-top: 12px; font-size: 13px; color: var(--accent); }
+  .hint { margin-top: 18px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+  <main class="box">
+    <h1>Mentoring Stats</h1>
+    <p>Four cohorts of mentees, and what came of them. Enter the code to open it.</p>
+    <form id="f" autocomplete="off">
+      <label for="code">Code</label>
+      <input id="code" name="code" type="text" autocapitalize="off" autocorrect="off"
+             spellcheck="false" autofocus aria-describedby="msg">
+      <button type="submit">Open in a new tab</button>
+      <div class="msg" id="msg" role="status" aria-live="polite"></div>
+    </form>
+    <p class="hint">Opens in a new tab. If it doesn't, allow pop-ups for this site.</p>
+  </main>
+<script>
+const CODE_HASH = "0TOmbdV2tM/eeKL83SlwFQtC8DAQ/dewE4ZPXQGDO/4=";
+const b64 = b => btoa(String.fromCharCode(...new Uint8Array(b)));
+const form = document.getElementById("f");
+const msg = document.getElementById("msg");
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const code = document.getElementById("code").value.trim().toLowerCase();
+  if (!code) return;
+  const hash = b64(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(code)));
+  if (hash !== CODE_HASH) {
+    msg.textContent = "That code doesn't match. Try again.";
+    return;
+  }
+  msg.textContent = "Opening…";
+  const tab = window.open("./mentoring/stats.html#" + encodeURIComponent(code), "_blank", "noopener");
+  if (!tab) msg.textContent = "Pop-up blocked — allow pop-ups, or open ./mentoring/stats.html and enter the code there.";
+});
+</script>
+</body>
+</html>

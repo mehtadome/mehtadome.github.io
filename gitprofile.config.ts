@@ -44,6 +44,14 @@ const CONFIG = {
       // To hide the `External Projects` section, keep it empty.
       projects: [
         {
+          title: '# Mentoring Stats',
+          description:
+            '### Tools\nHTML, inline SVG, Web Crypto\n\n### Overview\nFour cohorts of SCU engineering mentees, 2022-23 through 2025-26, and what came of them: how many completed a year, how many ran longer, who I am still in touch with, and where they landed.\n\n### Access\nThe page is encrypted and opens in a new tab once you enter the code. Ask me for it.',
+          imageUrl: '/img/senior-design.jpeg',
+          link: '/mentoring.html',
+          year: '2026',
+        },
+        {
           title: '# Spotify App & ETF Scanner',
           description:
             "\n### Tools\nPython, ReactJS, TypeScript, Claude, CodeWhisperer\n\n### Overview\nDeveloped a Spotify App which shows the user's top playlists and songs.\nCreated an ETF Scanner which pulls MorningStar's ETF reports and creates suggestions based on factors like risk assessment and total capital.\n\n### Fun Takeaway\nThis was my introduction to vibe-coding alongside Sonnet and AWS!",
